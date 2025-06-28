@@ -1,51 +1,59 @@
 // função responsável por iniciar a tabela de dispositivos ja pre definida
-function deviceAmountSettings(device) {
-    const tdAmount = document.createElement("td");
+function deviceInfoCell(device, type) {
+    const tdCell = document.createElement("td");
 
-    const amountValue = document.createElement("span");
-    amountValue.textContent = device.amount;
-    
-    const btnMinus = document.createElement("button");
-    btnMinus.textContent = "-";
-    btnMinus.onclick = () => {
-        if (amountValue.textContent > 0) {
-            amountValue.textContent = parseInt(amountValue.textContent) - 1;
-        }
+    const cellValue = document.createElement("input");
+    cellValue.value = device[type];
+
+    if (type != "name") {
+        cellValue.type = "number"
+        cellValue.min = "0"
     }
 
-    const btnPlus = document.createElement("button");
-    btnPlus.textContent = "+";
-    btnPlus.onclick = () => {
-        amountValue.textContent = parseInt(amountValue.textContent) + 1;
-    }
+    tdCell.append(cellValue);
 
-    tdAmount.append(btnMinus, amountValue, btnPlus);
-
-    return tdAmount;
+    return tdCell;
 }
 
 function initDevicesTable() {
     const devices = [
-        { name: "Device 1", amount: 2, consumption: 150 },
-        { name: "Device 2", amount: 1, consumption: 300 }
+        { name: "Computador", amount: 40, averagePower: 145, usageTime: 9 },
+        { name: "Impressora 3D", amount: 3, averagePower: 220, usageTime: 4 },
+        { name: "Estação de solda", amount: 2, averagePower: 95, usageTime: 3 },
+        { name: "Osciloscópio", amount: 4, averagePower: 60, usageTime: 2 },
+        { name: "Ar-condicionado", amount: 1, averagePower: 1350, usageTime: 8 }
     ];
 
     const tableBody = document.querySelector("#devices-table tbody");
 
-    devices.forEach((device) => {
+    devices.forEach((device, i) => {
         const line = document.createElement("tr");
+        
+        const tdName = deviceInfoCell(device, "name");
+        const tdAmount = deviceInfoCell(device, "amount");
+        const tdAveragePower = deviceInfoCell(device, "averagePower");
+        const tdUsageTime = deviceInfoCell(device, "usageTime");
 
-        const tdName = document.createElement("td");
-        const tdConsumption = document.createElement("td");
+        const tdDelete = document.createElement("td");
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "🗑️"
+        deleteBtn.onclick = () => {
+            const auth = confirm("Tem certeza que deseja remover este dispositivo?");
+            if (auth) {
+                line.remove();
+            }
+        };
+        tdDelete.appendChild(deleteBtn);
 
-        tdName.textContent = device.name;
-        tdAmount = deviceAmountSettings(device);
-        tdConsumption.textContent = device.consumption;
-
-        line.append(tdName, tdAmount, tdConsumption);
+        line.append(tdName, tdAmount, tdAveragePower, tdUsageTime, tdDelete);
 
         tableBody.appendChild(line);
     })
+}
+
+function addDeviceFormDisplay(stats) {
+    addDeviceForm = document.getElementById("device-form");
+    addDeviceForm.style.display = stats;
 }
 
 initDevicesTable();

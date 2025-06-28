@@ -3,103 +3,116 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
+        <meta charset="UTF-8">
         <title>ECS</title>
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=3">
     </head>
     <body>
-        <header>
-            <!-- Header da página -->
-            <h1>ECS</h1>
-            <h2>Simulador de Consumo Energético</h2>
-        </header>
-        <main>
-            <aside></aside>
-            <section>
-                <!-- Sessão do simulador -->
-                <h3>Simulador de Gastos</h3>
-                <div>
+        <aside class="sidebar">
+            <a href="/">simulador</a>
+            <a href="/history">histórico</a>
+        </aside>
+        <div>
+            <header class="site-header">
+                <!-- Header da página -->
+                <div class="header-text">
+                    <h1>ECS</h1>
+                    <h2>Simulador de Consumo Energético</h2>
+                </div>
+            </header>
+            <main class="container">
+                <section class="content">
+                    <!-- Sessão do simulador -->
+                    <h3>Simulador de Gastos</h3>
                     <div>
-                        <h4>Custo de energia (R$/kWh)</h4>
-                        <span>
-                            R$
-                            <input type="number" value="0.70" step="0.01">
-                        </span>
-                    </div>
-                    <h4>Dispositivos</h4>
-                    <table id="devices-table">
-                        <!--
-                            Tabela de dispositivos e suas funções,
-                            como adicionar, remover e simular
-                        -->
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Quantidade</th>
-                                <th>Potência Média (W)</th>
-                                <th>Horas de uso diário</th>
-                                <th><!-- th do botao deletar --></th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                        <div class="energia-custo">
+                            <h4>Custo de energia (R$/kWh)</h4>
+                            <span>
+                                R$
+                                <input type="number" value="0.70" step="0.01">
+                            </span>
+                        </div>
+                        <h4>Dispositivos</h4>
+                        <table id="devices-table">
                             <!--
-                                O corpo da tebela é adicionado
-                                de forma dinamica, com JS
+                                Tabela de dispositivos e suas funções,
+                                como adicionar, remover e simular
                             -->
-                        </tbody>
-                    </table>
-                    <button onclick="addDeviceFormDisplay('block')">Adicionar</button>
-                    <button>Simular</button>
-                </div>
-                <div id="device-form" style="display: none">
-                    <!-- Formulario para adicionar novo dispositivo -->
-                    <div>
-                        <h3>Adicionar Dispositivo</h3>
-                        <button onclick="addDeviceFormDisplay('none')">x</button>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th>Potência Média (W)</th>
+                                    <th>Horas de uso diário</th>
+                                    <th><!-- th do botao deletar --></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--
+                                    O corpo da tebela é adicionado
+                                    de forma dinamica, com JS
+                                -->
+                            </tbody>
+                        </table>
                     </div>
-                    <form>
-                        <div>
-                            <label for="name">Nome</label>
-                            <input
-                                type="text"
-                                name="name"
-                                id="name"
-                                required
-                            >
+                    <div class="actions">
+                        <button onclick="addDeviceFormDisplay('block')">Adicionar</button>
+                        <button>Simular</button>
+                    </div>
+                    <div id="device-form" style="display: none">
+                        <!-- Formulario para adicionar novo dispositivo -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Adicionar Dispositivo</h3>
+                                <button onclick="addDeviceFormDisplay('none')">x</button>
+                            </div>
+                            <form>
+                                <div>
+                                    <label for="name">Nome</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        required
+                                    >
+                                </div>
+                                <div>
+                                    <label for="amount">Quantidade</label>
+                                    <input
+                                        type="number"
+                                        name="amount"
+                                        id="amount"
+                                        min="1"
+                                        required
+                                    >
+                                </div>
+                                <div>
+                                    <label for="averagePower">Potência Média (W)</label>
+                                    <input
+                                        type="number"
+                                        name="averagePower"
+                                        id="averagePower"
+                                        min="0"
+                                        required
+                                    >
+                                </div>
+                                <div>
+                                    <label for="usageTime">Horas de uso diário</label>
+                                    <input
+                                        type="number"
+                                        name="usageTime"
+                                        id="usageTime"
+                                        min="0"
+                                        required
+                                    >
+                                </div>
+                                <button type="submit">Adicionar</button>
+                            </form>
                         </div>
-                        <div>
-                            <label for="amount">Quantidade</label>
-                            <input
-                                type="number"
-                                name="amount"
-                                id="amount"
-                                min="1"
-                                required
-                            >
-                        </div>
-                        <div>
-                            <label for="averagePower">Potência Média (W)</label>
-                            <input
-                                type="number"
-                                name="averagePower"
-                                id="averagePower"
-                                min="0"
-                                required
-                            >
-                        </div>
-                        <div>
-                            <label for="usageTime">Horas de uso diário</label>
-                            <input
-                                type="number"
-                                name="usageTime"
-                                id="usageTime"
-                                min="0"
-                                required
-                            >
-                        </div>
-                        <button type="submit">Adicionar</button>
-                    </form>
-                </div>
-            </section>
+                    </div>
+                </section>
+        </div>
         </main>
     </body>
-    <script src="{% static 'simulator/script.js' %}?v=2"></script>
+    <script src="{% static 'simulator/script.js' %}?v=1"></script>
 </html>

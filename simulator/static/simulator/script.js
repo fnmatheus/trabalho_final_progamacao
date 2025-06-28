@@ -62,6 +62,7 @@ function initDevicesTable() {
 // função responsável por alterar a visibilidade do formulario de adicionar novo dispositivo
 function addDeviceFormDisplay(stats) {
     const addDeviceFormDiv = document.getElementById("device-form");
+    addDeviceForm.reset();
     addDeviceFormDiv.style.display = stats;
 }
 

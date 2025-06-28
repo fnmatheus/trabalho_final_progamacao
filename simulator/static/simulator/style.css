@@ -1,0 +1,36 @@
+:root {
+  --background: #121212;
+  --surface: #1e1e1e;
+  --primary: #0CDB09; /* verde vibrante */
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --border-color: #2a2a2a;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+.site-header {
+}
+
+.header-text {
+}
+
+.header-text h1, .header-text h2 {
+    margin: 0;
+}
+
+.sidebar {
+    display: flex;
+    width: 5vw;
+    height: 100%;
+    flex-direction: column;
+    background-color: var(--primary);
+    margin-right: 1vw;
+}

@@ -1,3 +1,5 @@
+<!-- Arquivo HTML resposável pela pagina do projeto -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -5,8 +7,40 @@
     </head>
     <body>
         <header>
+            <!-- Header da página -->
             <h1>ECS</h1>
             <h2>Simulador de Consumo Energético</h2>
         </header>
+        <main>
+            <aside></aside>
+            <section>
+                <!-- Sessão do simulador -->
+                <h3>Simulador de Gastos</h3>
+                <div>
+                    <!--
+                        Tabela de dispositivos e suas funções,
+                        como adicionar, remover e simular
+                    -->
+                    <h4>Dispositivos</h4>
+                    <table id="devices-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                                <th>Consumo Kw/h</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--
+                                O corpo da tebela é adicionado
+                                de forma dinamica, com JS
+                            -->
+                        </tbody>
+                    </table>
+                    <button>Simular</button>
+                </div>
+            </section>
+        </main>
     </body>
+    <script src="{% static 'simulator/script.js' %}"></script>
 </html>

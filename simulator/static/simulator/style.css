@@ -71,3 +71,58 @@ body {
     margin: 0;
     font-weight: 200;
 }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.content h3 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.power-cost {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    gap: 2vh;
+}
+
+.power-cost h4 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.power-cost div {
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+    border: solid 1px #cccccc;
+    border-radius: 5px;
+    width: max-content;
+    padding: 5px;
+    font-size: large;
+}
+
+.power-cost div input {
+    border: none;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: large;
+}
+
+.device-table {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.device-table h4 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 0;
+}

@@ -5,12 +5,19 @@
     <head>
         <meta charset="UTF-8">
         <title>ECS</title>
-        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=3">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=2">
     </head>
     <body>
         <aside class="sidebar">
-            <a href="/">simulador</a>
-            <a href="/history">histórico</a>
+            <img class="sidebar-logo" src="{% static 'simulator/logo.svg' %}" alt="Logo do projeto ECS" width="100">
+            <a class="sidebar-option" href="/">
+                <img class="aside-logo" src="{% static 'simulator/simulator.svg' %}" alt="Logo do simulador" width="100">
+                <span>SIMULADOR</span>
+            </a>
+            <a class="sidebar-option" href="/history">
+                <img class="aside-logo" src="{% static 'simulator/history.svg' %}" alt="Logo do histórico" width="100">
+                <span>HISTÓRICO</span>
+            </a>
         </aside>
         <div>
             <header class="site-header">
@@ -25,7 +32,7 @@
                     <!-- Sessão do simulador -->
                     <h3>Simulador de Gastos</h3>
                     <div>
-                        <div class="energia-custo">
+                        <div class="power-cost">
                             <h4>Custo de energia (R$/kWh)</h4>
                             <span>
                                 R$
@@ -111,8 +118,8 @@
                         </div>
                     </div>
                 </section>
+            </main>
         </div>
-        </main>
     </body>
     <script src="{% static 'simulator/script.js' %}?v=1"></script>
 </html>

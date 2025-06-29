@@ -1,7 +1,7 @@
 :root {
   --background: #232A31;
   --surface: #1e1e1e;
-  --primary: #00C53B; /* verde vibrante */
+  --primary: #ff9900; /* verde vibrante */
   --text-primary: #ffffff;
   --text-secondary: #cccccc;
   --border-color: #2a2a2a;
@@ -35,4 +35,32 @@ body {
     flex-direction: column;
     background-color: var(--primary);
     margin-right: 1vw;
+    padding-top: 1vh;
+    padding-inline: 0.5vw;
+    gap: 6vh;
+    color: var(--background);
+    align-items: center;
+}
+
+.sidebar-logo {
+    width: 100%;
+}
+
+.sidebar-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    text-decoration: none;
+    color: var(--background);
+    gap: 1vh;
+}
+
+.sidebar-option img {
+    width: 80%;
+}
+
+.sidebar-option span {
+    font-size: small;
+    font-weight: bold;
 }

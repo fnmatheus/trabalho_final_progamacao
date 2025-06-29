@@ -101,7 +101,7 @@ body {
     display: flex;
     justify-content: left;
     gap: 5px;
-    border: solid 1px #cccccc;
+    border: solid 1px var(--text-secondary);
     border-radius: 5px;
     width: max-content;
     padding: 5px;
@@ -125,4 +125,33 @@ body {
     font-size: 1.6rem;
     font-weight: 400;
     margin: 0;
+}
+
+.device-table table thead tr {
+    font-size: large;
+}
+
+.device-table table tbody tr input {
+    background-color: var(--background);
+    border: none;
+    font-size: large;
+    border: solid 1px var(--text-secondary);
+    border-radius: 5px;
+    color: var(--text-primary);
+    padding: 5px;
+}
+
+.device-table table tbody tr button {
+    background-color: var(--background);
+    border: none;
+}
+
+.device-table table tbody tr button svg {
+    color: var(--text-secondary);
+    width: auto;
+    height: 30px;
+}
+
+.device-table table tbody tr button svg:hover {
+    color: red;
 }

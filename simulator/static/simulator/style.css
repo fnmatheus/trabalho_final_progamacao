@@ -155,3 +155,24 @@ body {
 .device-table table tbody tr button svg:hover {
     color: red;
 }
+
+.actions {
+    display: flex;
+    gap: 1vw;
+}
+
+.button {
+    border: solid 1px var(--primary);
+    border-radius: 5px;
+    background-color: var(--background);
+    font-size: large;
+    color: var(--primary);
+    padding: 5px;
+    width: 6vw;
+}
+
+.button:hover {
+    border: none;
+    color: var(--text-primary);
+    background-color: var(--primary);
+}

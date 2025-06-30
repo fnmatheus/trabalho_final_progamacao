@@ -116,7 +116,22 @@ function getTableData(query) {
   return devices;
 }
 
-function startSimulation() {
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+async function startSimulation() {
   const powerCost = document.getElementById("power-cost-value").value;
   const devices = getTableData("#devices-table tbody");
 
@@ -125,7 +140,14 @@ function startSimulation() {
     devices,
   };
 
-  console.log(data);
+  const response = await fetch("/simulate/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+    body: JSON.stringify(data),
+  });
 }
 
 // executa a função de iniciar os devices ao abrir a página

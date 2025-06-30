@@ -154,6 +154,7 @@ body {
 
 .device-table table tbody tr button svg:hover {
     color: red;
+    cursor: pointer;
 }
 
 .actions {
@@ -161,20 +162,28 @@ body {
     gap: 1vw;
 }
 
-.button {
-    border: solid 1px var(--primary);
+.sim-button, .add-button {
+    border: solid 1px var(--text-primary);
     border-radius: 5px;
     background-color: var(--background);
     font-size: large;
-    color: var(--primary);
+    color: var(--text-primary);
     padding: 5px;
     width: 6vw;
 }
 
-.button:hover {
-    border: none;
+.sim-button:hover {
+    border-color: var(--primary);
     color: var(--text-primary);
     background-color: var(--primary);
+    cursor: pointer;
+}
+
+.add-button:hover {
+    border-color: green;
+    color: var(--text-primary);
+    background-color: green;
+    cursor: pointer;
 }
 
 .form-container {
@@ -189,15 +198,70 @@ body {
     align-items: center;
 }
 
-.form-container div {
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
     background-color: var(--background);
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .form-header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .form-header h3 {
     margin: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.form-header button {
+    background-color: var(--background);
+    border: none;
+    padding: 0;
+}
+
+.form-header button svg {
+    color: var(--text-primary);
+    width: auto;
+    height: 30px;
+}
+
+.form-header button svg:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.form-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.form-body form div {
+    display: flex;
+    gap: 2vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-body form div input {
+    background-color: var(--background);
+    border: none;
+    font-size: large;
+    border: solid 1px var(--text-secondary);
+    border-radius: 5px;
+    color: var(--text-primary);
+    padding: 5px;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
 }

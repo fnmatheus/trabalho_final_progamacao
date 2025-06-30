@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>ECS</title>
-        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=2">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=1">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -63,22 +63,26 @@
                             </tbody>
                         </table>
                         <div class="actions">
-                            <button class="button" onclick="addDeviceFormDisplay('block')">Adicionar</button>
-                            <button class="button">Simular</button>
+                            <button class="add-button" onclick="addDeviceFormDisplay('block')">Adicionar</button>
+                            <button class="sim-button">Simular</button>
                         </div>
                     </div>
                 </section>
                 <div id="device-form" style="display: none">
                     <!-- Formulario para adicionar novo dispositivo -->
                     <div class="form-container">
-                        <div>
+                        <div class="form-body">
                             <div class="form-header">
                                 <h3>Adicionar Dispositivo</h3>
-                                <button onclick="addDeviceFormDisplay('none')">x</button>
+                                <button onclick="addDeviceFormDisplay('none')">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
+                                  </svg>
+                                </button>
                             </div>
                             <form>
                                 <div>
-                                    <label for="name">Nome</label>
+                                    <label for="name">Nome: </label>
                                     <input
                                         type="text"
                                         name="name"
@@ -87,7 +91,7 @@
                                     >
                                 </div>
                                 <div>
-                                    <label for="amount">Quantidade</label>
+                                    <label for="amount">Quantidade: </label>
                                     <input
                                         type="number"
                                         name="amount"
@@ -97,7 +101,7 @@
                                     >
                                 </div>
                                 <div>
-                                    <label for="averagePower">Potência Média (W)</label>
+                                    <label for="averagePower">Potência Média (W): </label>
                                     <input
                                         type="number"
                                         name="averagePower"
@@ -107,7 +111,7 @@
                                     >
                                 </div>
                                 <div>
-                                    <label for="usageTime">Horas de uso diário</label>
+                                    <label for="usageTime">Horas de uso diário: </label>
                                     <input
                                         type="number"
                                         name="usageTime"
@@ -116,7 +120,9 @@
                                         required
                                     >
                                 </div>
-                                <button type="submit">Adicionar</button>
+                                <div class="btn-container">
+                                    <button class="add-button" type="submit">Adicionar</button>
+                                </div>
                             </form>
                         </div>
                     </div>

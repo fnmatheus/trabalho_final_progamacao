@@ -36,7 +36,7 @@
                         <h4>Custo de energia (R$/kWh)</h4>
                         <div>
                             <span>R$</span>
-                            <input type="number" value="0.70" step="0.01">
+                            <input id="power-cost-value" type="number" value="0.70" step="0.01">
                         </div>
                     </div>
                     <div class="device-table">
@@ -64,7 +64,7 @@
                         </table>
                         <div class="actions">
                             <button class="add-button" onclick="addDeviceFormDisplay('block')">Adicionar</button>
-                            <button class="sim-button">Simular</button>
+                            <button class="sim-button" onclick="startSimulation()">Simular</button>
                         </div>
                     </div>
                 </section>
@@ -75,9 +75,9 @@
                             <div class="form-header">
                                 <h3>Adicionar Dispositivo</h3>
                                 <button onclick="addDeviceFormDisplay('none')">
-                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
-                                  </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
+                                    </svg>
                                 </button>
                             </div>
                             <form>
@@ -130,5 +130,5 @@
             </main>
         </div>
     </body>
-    <script src="{% static 'simulator/script.js' %}?v=2"></script>
+    <script src="{% static 'simulator/script.js' %}?v=1"></script>
 </html>

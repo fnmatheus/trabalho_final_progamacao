@@ -60,7 +60,7 @@ function initDevicesTable() {
         const line = deviceLineCreator(device);
 
         tableBody.appendChild(line);
-    })
+    });
 }
 
 // função responsável por alterar a visibilidade do formulario de adicionar novo dispositivo
@@ -94,4 +94,11 @@ addDeviceForm.addEventListener("submit", (event) => {
     alert("Novo dispositivo adicionado!")
 });
 
+function startSimulation() {
+    const powerCost = document.getElementById("power-cost-value").value;
+    const devicesTable = document.getElementById("devices-table");
+    console.log(tableData);
+}
+
+// executa a função de iniciar os devices ao abrir a página
 initDevicesTable();

@@ -159,7 +159,7 @@ body {
 
 .actions {
     display: flex;
-    gap: 1vw;
+    gap: 0.5vw;
 }
 
 .sim-button, .add-button {

@@ -158,7 +158,16 @@ async function startSimulation() {
 
   const response = await request.json();
 
+  changeDisplayStats("none", "loading-container")
+  changeDisplayStats("flex", "simulation-section")
+
   console.log(response);
+}
+
+function closeSimulation() {
+  changeDisplayStats('none', 'simulation-window')
+  changeDisplayStats('none', 'simulation-section')
+  changeDisplayStats('flex', 'loading-container')
 }
 
 // executa a função de iniciar os devices ao abrir a página

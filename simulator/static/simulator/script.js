@@ -94,6 +94,7 @@ addDeviceForm.addEventListener("submit", (event) => {
   alert("Novo dispositivo adicionado!");
 });
 
+// função responsável por pegar os dados na tabela para a simulação
 function getTableData(query) {
   const tableBody = document.querySelector(query);
   const rows = tableBody.querySelectorAll("tr");
@@ -116,6 +117,7 @@ function getTableData(query) {
   return devices;
 }
 
+// função necessária para fazer o fetch para o backend
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== "") {
@@ -131,6 +133,7 @@ function getCookie(name) {
   return cookieValue;
 }
 
+// função principal para enviar os dados da simulação para o backend
 async function startSimulation() {
   const powerCost = document.getElementById("power-cost").value;
   const days = document.getElementById("days").value;
@@ -150,6 +153,8 @@ async function startSimulation() {
     },
     body: JSON.stringify(data),
   });
+
+  console.log(response);
 }
 
 // executa a função de iniciar os devices ao abrir a página

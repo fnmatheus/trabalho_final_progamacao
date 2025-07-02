@@ -197,7 +197,5 @@ def simulate(request: HttpRequest):
             "unitxgroup_plot": unitxgroup_plot["path"],
         }
 
-        print(data)
-
-        return JsonResponse({"status": "OK"})
+        return JsonResponse({"status": "OK", "data": data})
     return JsonResponse({"error": "Bad request"}, status=405)

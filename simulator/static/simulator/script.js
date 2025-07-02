@@ -63,9 +63,9 @@ function initDevicesTable() {
   });
 }
 
-// função responsável por alterar a visibilidade do formulario de adicionar novo dispositivo
-function addDeviceFormDisplay(stats) {
-  const addDeviceFormDiv = document.getElementById("device-form");
+// função responsável por alterar a visibilidade de um container
+function changeDisplayStats(stats, id) {
+  const addDeviceFormDiv = document.getElementById(id);
   addDeviceForm.reset();
   addDeviceFormDiv.style.display = stats;
 }
@@ -135,6 +135,8 @@ function getCookie(name) {
 
 // função principal para enviar os dados da simulação para o backend
 async function startSimulation() {
+  changeDisplayStats("block", "simulation-window")
+
   const powerCost = document.getElementById("power-cost").value;
   const days = document.getElementById("days").value;
   const devices = getTableData("#devices-table tbody");
@@ -145,7 +147,7 @@ async function startSimulation() {
     devices,
   };
 
-  const response = await fetch("/simulate/", {
+  const request = await fetch("/simulate/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -153,6 +155,8 @@ async function startSimulation() {
     },
     body: JSON.stringify(data),
   });
+
+  const response = await request.json();
 
   console.log(response);
 }

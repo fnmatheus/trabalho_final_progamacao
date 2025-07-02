@@ -191,7 +191,7 @@ body {
     cursor: pointer;
 }
 
-.form-container {
+.full-screen-bg {
     position: absolute;
     inset-inline-start: 0px;
     inset-block-start: 0px;
@@ -269,4 +269,15 @@ body {
     flex-direction: column;
     width: 100%;
     justify-content: center;
+}
+
+.simulation-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    background-color: var(--background);
+    border-radius: 20px;
 }

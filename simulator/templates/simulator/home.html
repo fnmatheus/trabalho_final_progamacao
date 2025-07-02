@@ -5,7 +5,8 @@
     <head>
         <meta charset="UTF-8">
         <title>ECS</title>
-        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=1">
+        <link rel="icon" type="image/svg+xml" href="{% static 'simulator/logo.svg' %}">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=2">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -71,18 +72,18 @@
                             </tbody>
                         </table>
                         <div class="actions">
-                            <button class="add-button" onclick="addDeviceFormDisplay('block')">Adicionar</button>
+                            <button class="add-button" onclick="changeDisplayStats('block', 'device-form')">Adicionar</button>
                             <button class="sim-button" onclick="startSimulation()">Simular</button>
                         </div>
                     </div>
                 </section>
                 <div id="device-form" style="display: none">
                     <!-- Formulario para adicionar novo dispositivo -->
-                    <div class="form-container">
+                    <div class="full-screen-bg">
                         <div class="form-body">
                             <div class="form-header">
                                 <h3>Adicionar Dispositivo</h3>
-                                <button onclick="addDeviceFormDisplay('none')">
+                                <button onclick="changeDisplayStats('none', 'device-form')">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                         <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
                                     </svg>
@@ -135,8 +136,18 @@
                         </div>
                     </div>
                 </div>
+                <div id="simulation-window" style="display: block">
+                    <!-- Janela de resultado da simulação -->
+                    <div class="full-screen-bg">
+                        <div class="simulation-body">
+                            <button class="sim-button" onclick="changeDisplayStats('none', 'simulation-window')">
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
     </body>
-    <script src="{% static 'simulator/script.js' %}?v=1"></script>
+    <script src="{% static 'simulator/script.js' %}?v=2"></script>
 </html>

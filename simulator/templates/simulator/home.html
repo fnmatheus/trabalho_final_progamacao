@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>ECS</title>
         <link rel="icon" type="image/svg+xml" href="{% static 'simulator/logo.svg' %}">
-        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=3">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=4">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -144,9 +144,28 @@
                                 <img class="loading-logo" src="{% static 'simulator/loading.svg' %}" alt="Logo do histórico" width="100">
                             </div>
                             <section id="simulation-section" style="display: none">
-                                <button class="sim-button" onclick="closeSimulation()">
-                                    Fechar
-                                </button>
+                                <div class="simulation-container">
+                                    <h3>Resultado da Simulação</h3>
+                                    <p id="total-cost">
+                                        <span>Gasto total: </span>
+                                    </p>
+                                    <p id="daily-cost">
+                                        <span>Gasto diário:</span>
+                                    </p>
+                                </div>
+                                <div class="plots-container">
+                                    <h4>Gráficos</h4>
+                                    <div class="p">
+                                        <img src="{% static 'simulator/plots/daily_cost_plot.svg' %}" alt="grafico 1" width="100">
+                                        <img src="{% static 'simulator/plots/periodic_cost_plot.svg' %}" alt="grafico 2" width="100">
+                                        <img src="{% static 'simulator/plots/unitxgroup_plot.svg' %}" alt="grafico 3" width="100">
+                                    </div>
+                                </div>
+                                <div class="simulation-button-container">
+                                    <button class="sim-button" onclick="closeSimulation()">
+                                        Fechar
+                                    </button>
+                                </div>
                             </section>
                         </div>
                     </div>

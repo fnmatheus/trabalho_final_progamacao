@@ -164,6 +164,8 @@ async function startSimulation() {
   console.log(response);
 }
 
+// Função para fechamento da simulação
+
 function closeSimulation() {
   changeDisplayStats('none', 'simulation-window')
   changeDisplayStats('none', 'simulation-section')

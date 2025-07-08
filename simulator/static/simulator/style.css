@@ -345,6 +345,7 @@ body {
 
 .images-container {
     display: flex;
+    align-items: center;
 }
 
 #plots-images {
@@ -366,6 +367,7 @@ body {
     border: none;
     margin: 0;
     background-color: var(--background);
+    height: max-content;
 }
 
 .change-img-btn svg {
@@ -375,4 +377,5 @@ body {
 
 .change-img-btn svg:hover {
     color: var(--primary);
+    cursor: pointer;
 }

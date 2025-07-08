@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>ECS</title>
         <link rel="icon" type="image/svg+xml" href="{% static 'simulator/logo.svg' %}">
-        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=1">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=2">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -136,14 +136,14 @@
                         </div>
                     </div>
                 </div>
-                <div id="simulation-window" style="display: flex">
+                <div id="simulation-window" style="display: none">
                     <!-- Janela de resultado da simulação -->
                     <div class="full-screen-bg">
                         <div class="simulation-body">
-                            <div id="loading-container" style="display: none">
+                            <div id="loading-container" style="display: flex">
                                 <img class="loading-logo" src="{% static 'simulator/loading.svg' %}" alt="Logo do histórico" width="100">
                             </div>
-                            <section id="simulation-section" style="display: flex">
+                            <section id="simulation-section" style="display: none">
                                 <div class="simulation-container">
                                     <h3>Resultado da Simulação</h3>
                                     <p id="total-cost">
@@ -156,15 +156,25 @@
                                 <div class="plots-container">
                                     <h4>Gráficos</h4>
                                     <div class="images-container">
-                                        <button onclick="changePlot('-')">-</button>
-                                        <span id="image-counter" style="display: none">1</span>
+                                        <button class="change-img-btn" onclick="changePlot('-')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
                                         <div id="plots-images">
-                                            <img id="plot-1" style="display: block" src="{% static 'simulator/plots/daily_cost_plot.svg' %}" alt="grafico 1">
-                                            <img id="plot-2" style="display: none"  src="{% static 'simulator/plots/periodic_cost_plot.svg' %}" alt="grafico 2">
-                                            <img id="plot-3" style="display: none"  src="{% static 'simulator/plots/unitxgroup_plot.svg' %}" alt="grafico 3">
+                                            <img id="plot-1" style="display: block" src="simulator/plots/daily_cost_plot.svg" alt="grafico 1">
+                                            <img id="plot-2" style="display: none"  src="simulator/plots/periodic_cost_plot.svg" alt="grafico 2">
+                                            <img id="plot-3" style="display: none"  src="simulator/plots/unitxgroup_plot.svg" alt="grafico 3">
                                         </div>
-                                        <button onclick="changePlot('+')">+</button>
+                                        <button class="change-img-btn" onclick="changePlot('+')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
                                     </div>
+                                    <p style="display: flex; font-size: 1.2rem;">
+                                        <span id="image-counter" style="display: flex">1</span>/3
+                                    </p>
                                 </div>
                                 <div class="simulation-button-container">
                                     <button class="sim-button" onclick="closeSimulation()">

@@ -340,6 +340,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2vh;
+    align-items: center;
 }
 
 .images-container {
@@ -359,4 +360,19 @@ body {
 #plots-images img {
     width: auto;
     height: 50vh;
+}
+
+.change-img-btn {
+    border: none;
+    margin: 0;
+    background-color: var(--background);
+}
+
+.change-img-btn svg {
+    width: 50px;
+    color: var(--text-secondary);
+}
+
+.change-img-btn svg:hover {
+    color: var(--primary);
 }

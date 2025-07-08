@@ -172,5 +172,22 @@ function closeSimulation() {
   changeDisplayStats('flex', 'loading-container')
 }
 
+// Função para alternar entre as imagens
+
+function changePlot(type) {
+  const counterHTML = document.getElementById('image-counter');
+  const counterValue = Number(counterHTML.innerHTML);
+
+  if (type == "-" && counterValue > 1) {
+    document.getElementById(`plot-${counterValue}`).style.display = "none";
+    document.getElementById(`plot-${counterValue - 1}`).style.display = "block";
+    counterHTML.innerHTML = counterValue - 1;
+  } else if (type == "+" && counterValue < 3) {
+    document.getElementById(`plot-${counterValue}`).style.display = "none";
+    document.getElementById(`plot-${counterValue + 1}`).style.display = "block";
+    counterHTML.innerHTML = counterValue + 1;
+  }
+}
+
 // executa a função de iniciar os devices ao abrir a página
 initDevicesTable();

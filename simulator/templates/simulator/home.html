@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>ECS</title>
         <link rel="icon" type="image/svg+xml" href="{% static 'simulator/logo.svg' %}">
-        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=4">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=1">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -136,14 +136,14 @@
                         </div>
                     </div>
                 </div>
-                <div id="simulation-window" style="display: none">
+                <div id="simulation-window" style="display: flex">
                     <!-- Janela de resultado da simulação -->
                     <div class="full-screen-bg">
                         <div class="simulation-body">
-                            <div id="loading-container" style="display: flex">
+                            <div id="loading-container" style="display: none">
                                 <img class="loading-logo" src="{% static 'simulator/loading.svg' %}" alt="Logo do histórico" width="100">
                             </div>
-                            <section id="simulation-section" style="display: none">
+                            <section id="simulation-section" style="display: flex">
                                 <div class="simulation-container">
                                     <h3>Resultado da Simulação</h3>
                                     <p id="total-cost">
@@ -155,10 +155,15 @@
                                 </div>
                                 <div class="plots-container">
                                     <h4>Gráficos</h4>
-                                    <div class="p">
-                                        <img src="{% static 'simulator/plots/daily_cost_plot.svg' %}" alt="grafico 1" width="100">
-                                        <img src="{% static 'simulator/plots/periodic_cost_plot.svg' %}" alt="grafico 2" width="100">
-                                        <img src="{% static 'simulator/plots/unitxgroup_plot.svg' %}" alt="grafico 3" width="100">
+                                    <div class="images-container">
+                                        <button onclick="changePlot('-')">-</button>
+                                        <span id="image-counter" style="display: none">1</span>
+                                        <div id="plots-images">
+                                            <img id="plot-1" style="display: block" src="{% static 'simulator/plots/daily_cost_plot.svg' %}" alt="grafico 1">
+                                            <img id="plot-2" style="display: none"  src="{% static 'simulator/plots/periodic_cost_plot.svg' %}" alt="grafico 2">
+                                            <img id="plot-3" style="display: none"  src="{% static 'simulator/plots/unitxgroup_plot.svg' %}" alt="grafico 3">
+                                        </div>
+                                        <button onclick="changePlot('+')">+</button>
                                     </div>
                                 </div>
                                 <div class="simulation-button-container">
@@ -173,5 +178,5 @@
             </main>
         </div>
     </body>
-    <script src="{% static 'simulator/script.js' %}?v=3"></script>
+    <script src="{% static 'simulator/script.js' %}?v=5"></script>
 </html>

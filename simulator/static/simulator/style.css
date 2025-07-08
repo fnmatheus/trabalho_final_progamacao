@@ -342,17 +342,21 @@ body {
     gap: 2vh;
 }
 
-.plots-container div {
+.images-container {
+    display: flex;
+}
+
+#plots-images {
     display: flex;
     width: 45vw;
     height: 50vh;
     flex-wrap: wrap;
     gap: 1vw;
     justify-content: center;
-    overflow: auto;
+    overflow: hidden;
 }
 
-.plots-container div img {
+#plots-images img {
     width: auto;
     height: 50vh;
 }

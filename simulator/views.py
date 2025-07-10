@@ -10,12 +10,55 @@ def home(request: HttpRequest):
     return render(request, "simulator/home.html")
 
 
+# Função para calcular o consumo diario de um dispositivo
+def get_unit_devices_daily_consume(devices):
+    unit_daily_consume = [
+        {
+            "name": device["name"],
+            "consume": round(((device["averagePower"]/1000) * device["usageTime"]), 2),
+            "amount": device["amount"],
+        }
+        for device in devices
+    ]
+    return unit_daily_consume
+
+
+# Função para calcular o consumo do grupo de dispositvivos diariamente
+def get_devices_daily_consume(devices_unit_daily_consume):
+    daily_consume = [
+        {
+            "name": device["name"],
+            "consume": round((device["consume"] * device["amount"]), 2)
+        }
+        for device in devices_unit_daily_consume
+    ]
+    return daily_consume
+
+
+# Função para calcular o consumo dos dispositivos no periodo
+def get_devices_periodic_consume(devices_daily_consume, days):
+    periodic_consume = [
+        {
+            "name": device["name"],
+            "consume": round((device["consume"] * days), 2)
+        }
+        for device in devices_daily_consume
+    ]
+    return periodic_consume
+
+
+# Calcula o consumo total dos dispositivos
+def get_total_consume(devices):
+    total_consume = round(sum(device["consume"] for device in devices), 2)
+    return total_consume
+
+
 # Função para calcular o gasto de uma unidade cada dispositivo por dia
 def get_unit_devices_daily_cost(devices, power_cost):
     unit_daily_cost = [
         {
             "name": device["name"],
-            "cost": round((((device["averagePower"]/1000) * device["usageTime"]) * power_cost), 2),
+            "cost": round((device["consume"] * power_cost), 2),
             "amount": device["amount"],
         }
         for device in devices
@@ -164,7 +207,12 @@ def simulate(request: HttpRequest):
         days = int(body.get("days", []))
         devices = body.get("devices", [])
 
-        unit_daily_cost = get_unit_devices_daily_cost(devices, power_cost)
+        unit_daily_consume = get_unit_devices_daily_consume(devices)
+        daily_consume = get_devices_daily_consume(unit_daily_consume)
+        periodic_consume = get_devices_periodic_consume(daily_consume, days)
+        total_consume = get_total_consume(periodic_consume)
+
+        unit_daily_cost = get_unit_devices_daily_cost(unit_daily_consume, power_cost)
         daily_cost = get_devices_daily_cost(unit_daily_cost)
         total_daily_cost = get_total_cost(daily_cost)
         periodic_cost = get_devices_periodic_cost(daily_cost, days)
@@ -192,6 +240,8 @@ def simulate(request: HttpRequest):
         data = {
             "daily_cost": total_daily_cost,
             "periodic_cost": total_periodic_cost,
+            "periodic_consume": periodic_consume,
+            "total_consume": total_consume,
             "daily_cost_plot": daily_cost_plot["path"],
             "periodic_plot": periodic_plot["path"],
             "unitxgroup_plot": unitxgroup_plot["path"],

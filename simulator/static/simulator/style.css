@@ -336,6 +336,10 @@ body {
     margin: 0;
 }
 
+#total-cost, #daily-cost {
+    font-size: 1.2rem;
+}
+
 .plots-container {
     display: flex;
     flex-direction: column;

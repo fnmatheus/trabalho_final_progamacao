@@ -62,7 +62,7 @@ path = "media/uploads/"
 
 # Função para gerar o gráfico de visão geral dos gastos
 def plot_daily_cost_value(daily_cost, total_daily_cost, days, name):
-    days_range = list(range(1, days + 1))
+    days_range = list(range(0, days + 1))
 
     # cria uma lista com o nome e outra lista de listas com cada gasto diario
     # de forma acumulativa soma o dia anterior

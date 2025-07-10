@@ -147,10 +147,10 @@
                                 <div class="simulation-container">
                                     <h3>Resultado da Simulação</h3>
                                     <p id="total-cost">
-                                        <span>Gasto total: </span>
+                                        <span>Gasto total: R$</span>
                                     </p>
                                     <p id="daily-cost">
-                                        <span>Gasto diário:</span>
+                                        <span>Gasto diário: R$</span>
                                     </p>
                                 </div>
                                 <div class="plots-container">
@@ -161,11 +161,7 @@
                                                 <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clip-rule="evenodd" />
                                             </svg>
                                         </button>
-                                        <div id="plots-images">
-                                            <img id="plot-1" style="display: block" src="simulator/plots/daily_cost_plot.svg" alt="grafico 1">
-                                            <img id="plot-2" style="display: none"  src="simulator/plots/periodic_cost_plot.svg" alt="grafico 2">
-                                            <img id="plot-3" style="display: none"  src="simulator/plots/unitxgroup_plot.svg" alt="grafico 3">
-                                        </div>
+                                        <div id="plots-images"></div>
                                         <button class="change-img-btn" onclick="changePlot('+')">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                                 <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clip-rule="evenodd" />
@@ -188,5 +184,5 @@
             </main>
         </div>
     </body>
-    <script src="{% static 'simulator/script.js' %}?v=5"></script>
+    <script src="{% static 'simulator/script.js' %}?v=1"></script>
 </html>

@@ -57,7 +57,7 @@ def get_total_cost(devices):
 
 
 # Caminho no qual os graficos devem ser salvos
-path = "simulator/static/simulator/plots/"
+path = "media/uploads/"
 
 
 # Função para gerar o gráfico de visão geral dos gastos

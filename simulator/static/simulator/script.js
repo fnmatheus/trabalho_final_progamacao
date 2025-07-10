@@ -133,9 +133,65 @@ function getCookie(name) {
   return cookieValue;
 }
 
+// função para limpar os dados da função anterior antes de criar uma nova
+function clearSimulation() {
+  const totalCost = document.getElementById("total-cost");
+  totalCost.removeChild(totalCost.lastChild);
+
+  const dailyCost = document.getElementById("daily-cost");
+  dailyCost.removeChild(dailyCost.lastChild);
+
+  const plotsContainer = document.getElementById("plots-images");
+  plotsContainer.innerHTML = "";
+
+  const counterHTML = document.getElementById('image-counter');
+  counterHTML.innerHTML = "1";
+}
+
+// função para adicionar os items da simulação
+function setSimulation(data) {
+  // adicionar custo total
+  const totalCost = document.getElementById("total-cost");
+
+  const totalCostValue = document.createElement("span");
+  totalCostValue.innerHTML = data.periodic_cost;
+
+  totalCost.appendChild(totalCostValue);
+
+  // adicionar custo diario
+  const dailyCost = document.getElementById("daily-cost");
+
+  const dailyCostValue = document.createElement("span");
+  dailyCostValue.innerHTML = data.daily_cost;
+
+  dailyCost.appendChild(dailyCostValue);
+
+  // adicionar imagens dos graficos
+  const plotsContainer = document.getElementById("plots-images");
+
+  const dailyCostPlot = document.createElement("img");
+  dailyCostPlot.id = "plot-1";
+  dailyCostPlot.style = "display: block";
+  dailyCostPlot.src = `${data.daily_cost_plot}?t=${Date.now()}`;
+
+  const periodicCostPlot = document.createElement("img");
+  periodicCostPlot.id = "plot-2";
+  periodicCostPlot.style = "display: none";
+  periodicCostPlot.src = `${data.periodic_plot}?t=${Date.now()}`;
+
+  const unitxgroupCostPlot = document.createElement("img");
+  unitxgroupCostPlot.id = "plot-3";
+  unitxgroupCostPlot.style = "display: none";
+  unitxgroupCostPlot.src = `${data.unitxgroup_plot}?t=${Date.now()}`;
+
+  plotsContainer.append(dailyCostPlot, periodicCostPlot, unitxgroupCostPlot);
+}
+
 // função principal para enviar os dados da simulação para o backend
 async function startSimulation() {
-  changeDisplayStats("block", "simulation-window")
+  clearSimulation();
+
+  changeDisplayStats("block", "simulation-window");
 
   const powerCost = document.getElementById("power-cost").value;
   const days = document.getElementById("days").value;
@@ -161,7 +217,7 @@ async function startSimulation() {
   changeDisplayStats("none", "loading-container")
   changeDisplayStats("flex", "simulation-section")
 
-  console.log(response);
+  setSimulation(response.data)
 }
 
 // Função para fechamento da simulação

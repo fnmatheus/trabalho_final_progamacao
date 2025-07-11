@@ -14,6 +14,8 @@ Tabela de conteúdos
    * [Sobre o projeto](#-sobre-o-projeto)
    * [Funcionalidades](#-funcionalidades)
    * [Tecnologias](#-tecnologias)
+   * [Como usar](#-comousar)
+   * [Metodologia](#-metodologia)
    * [Autor](#-autor)
    * [Licença](#user-content--licença)
 <!--te-->

@@ -336,7 +336,7 @@ body {
     margin: 0;
 }
 
-#total-cost, #daily-cost {
+.simulation-category {
     font-size: 1.2rem;
 }
 

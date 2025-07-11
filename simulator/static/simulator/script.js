@@ -141,6 +141,9 @@ function clearSimulation() {
   const dailyCost = document.getElementById("daily-cost");
   dailyCost.removeChild(dailyCost.lastChild);
 
+  const totalConsume = document.getElementById("total-consume");
+  totalConsume.removeChild(totalConsume.lastChild);
+
   const plotsContainer = document.getElementById("plots-images");
   plotsContainer.innerHTML = "";
 
@@ -166,6 +169,22 @@ function setSimulation(data) {
 
   dailyCost.appendChild(dailyCostValue);
 
+  // adicionar consumo total
+  const totalConsume = document.getElementById("total-consume");
+
+  const totalConsumeValue = document.createElement("span");
+  totalConsumeValue.innerHTML = `${data.total_consume} kWh`;
+
+  totalConsume.appendChild(totalConsumeValue);
+
+  // adicionar consumo diario
+  const dailyConsume = document.getElementById("daily-consume")
+
+  const dailyConsumeValue = document.createElement("span");
+  dailyConsumeValue.innerHTML = `${data.total_daily_consume} kWh`;
+  
+  dailyConsume.appendChild(dailyConsumeValue);
+
   // adicionar imagens dos graficos
   const plotsContainer = document.getElementById("plots-images");
 
@@ -185,6 +204,8 @@ function setSimulation(data) {
   unitxgroupCostPlot.src = `${data.unitxgroup_plot}?t=${Date.now()}`;
 
   plotsContainer.append(dailyCostPlot, periodicCostPlot, unitxgroupCostPlot);
+
+  console.log(data);
 }
 
 // função principal para enviar os dados da simulação para o backend

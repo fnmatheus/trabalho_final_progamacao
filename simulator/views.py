@@ -35,6 +35,12 @@ def get_devices_daily_consume(devices_unit_daily_consume):
     return daily_consume
 
 
+# Função para calcular o consumo diario dos dispositivos
+def get_daily_total_consume(devices_daily_consume):
+    total_consume = round(sum(device["consume"] for device in devices_daily_consume), 2)
+    return total_consume
+
+
 # Função para calcular o consumo dos dispositivos no periodo
 def get_devices_periodic_consume(devices_daily_consume, days):
     periodic_consume = [
@@ -209,6 +215,7 @@ def simulate(request: HttpRequest):
 
         unit_daily_consume = get_unit_devices_daily_consume(devices)
         daily_consume = get_devices_daily_consume(unit_daily_consume)
+        total_daily_consume = get_daily_total_consume(daily_consume)
         periodic_consume = get_devices_periodic_consume(daily_consume, days)
         total_consume = get_total_consume(periodic_consume)
 
@@ -240,6 +247,7 @@ def simulate(request: HttpRequest):
         data = {
             "daily_cost": total_daily_cost,
             "periodic_cost": total_periodic_cost,
+            "total_daily_consume": total_daily_consume,
             "periodic_consume": periodic_consume,
             "total_consume": total_consume,
             "daily_cost_plot": daily_cost_plot["path"],

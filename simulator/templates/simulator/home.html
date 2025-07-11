@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>ECS</title>
         <link rel="icon" type="image/svg+xml" href="{% static 'simulator/logo.svg' %}">
-        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=1">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=3">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -147,12 +147,20 @@
                             <section id="simulation-section" style="display: none">
                                 <div class="simulation-container">
                                     <h3>Resultado da Simulação</h3>
-                                    <p id="total-cost">
-                                        <span>Gasto total: R$</span>
-                                    </p>
-                                    <p id="daily-cost">
-                                        <span>Gasto diário: R$</span>
-                                    </p>
+                                    <div>
+                                        <p class="simulation-category" id="total-cost">
+                                            <span>Gasto total: R$</span>
+                                        </p>
+                                        <p class="simulation-category" id="daily-cost">
+                                            <span>Gasto diário: R$</span>
+                                        </p>
+                                        <p class="simulation-category" id="total-consume">
+                                            <span>Consumo total: </span>
+                                        </p>
+                                        <p class="simulation-category" id="daily-consume">
+                                            <span>Consumo diário: </span>
+                                        </p>
+                                    </div>
                                 </div>
                                 <div class="plots-container">
                                     <h4>Gráficos</h4>
@@ -185,5 +193,5 @@
             </main>
         </div>
     </body>
-    <script src="{% static 'simulator/script.js' %}?v=1"></script>
+    <script src="{% static 'simulator/script.js' %}?v=2"></script>
 </html>

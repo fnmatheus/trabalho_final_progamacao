@@ -1,45 +1,80 @@
-# Trabalho Final - Simulação e Análise de Consumo de Energia em um Laboratório
-**Simulação do Consumo Elétrico e Análise de Dados de Equipamentos em um Laboratório de Engenharia**
-## 📝 Objetivo
-Simular, processar e analisar o consumo elétrico de diversos equipamentos de um laboratório ao longo de uma semana. O aluno deve estruturar tudo em um Jupyter Notebook usando Markdown, estruturas de dados (listas, arrays, matrizes), controle de fluxo (condicionais, laços, ...), funções, arquivos e visualizações gráficas.
-## 🔧 Descrição do problema
-Imagine um laboratório com os seguintes equipamentos:
+<p align="center">
+  <img src="./simulator/static/simulator/logo.svg" height="100"/>
+</p>
+<h1 align="center">⚡ ECS</h1>
+<h2 align="center">Simulador de Consumo Energético</h2>
 
-- 40 Computadores
-- 3 Impressoras 3D
-- 2 Estações de solda
-- 4 Osciloscópios
-- 1 Ar-condicionado
+<h4 align="center"> 
+	🚧 ECS 🚀 Em construção... 🚧
+</h4>
 
-Cada equipamento tem:
-- Potência média (W)
-- Horas de uso diário
-- Custo de energia (R$/kWh)
+Tabela de conteúdos
+=================
+<!--ts-->
+   * [Sobre o projeto](#-sobre-o-projeto)
+   * [Funcionalidades](#-funcionalidades)
+   * [Tecnologias](#-tecnologias)
+   * [Autor](#-autor)
+   * [Licença](#user-content--licença)
+<!--te-->
 
-O aluno deverá:
-1. Criar **estruturas de dados** (listas, dicionários, arrays/matrizes numpy ou arquivos) com essas informações.
-2. Simular o uso dos equipamentos por 7 dias.
-3. Calcular o **consumo total de energia** por dia e por equipamento.
-4. Calcular o **custo total** da energia consumida.
-5. Armazenar os dados em arquivos.
-6. Gerar **gráficos descritivos** com o auxílio da biblioteca Matplotlib com os resultados obtidos.
+## 💻 Sobre o projeto
 
-**ATENÇÃO:** potência média, horas de uso diário e custo de energia deverão ser definidos pelo aluno.
-## 📋 Exigências técnicas
-- Uso de **Markdown** estruturado no Jupyter Notebook (com seções como Introdução, Metodologia, Código, Resultados, Conclusão).
-- Uso de **listas, dicionários, arquivos e estruturas de repetição**.
-- Sugere-se a implementação de **funções** para modularizar o código (opcional).
-- Uso de **bibliotecas**: `numpy`, `matplotlib`.
-- Geração de pelo menos três **gráficos**.
-- Exportação do ambiente: `conda env export > ambiente.yml`.
-- Organização, indentação e clareza no código.
-## 💡 Sugestões bônus (opcional)
-- Interface em terminal com menus (`input()`).
-- Adicionar mais tipos de equipamentos.
-- Permitir simulação para diferentes semanas.
-- Exportar um relatório `.txt` com resumo de resultados.
-## 📁 Entrega
-- Arquivo `.ipynb` com o trabalho completo, dados e gráficos.
-- Arquivo `.yml` com o ambiente Conda.
-- Arquivo `.csv` ou `.txt` com os dados simulados.
-- Tudo compactado em `.zip` e submetido no *Campus Virtual* até a data combinada.
+💬 WebChat - é um sistema de troca de mensagens instantânea por meio da internet, semelhante ao whatsapp e direct do instagram.
+
+---
+
+## ⚙️ Funcionalidades
+
+- [ ] Adicionar amigos
+  - [ ] enviar pedidios de amizade
+  - [ ] aceitar ou recusar os pedidios de amizade
+
+- [ ] Conversas individuais:
+  - [ ] mandar texto e arquivos para um amigo
+     
+- [ ] Conversas em grupos:
+  - [ ] criar grupos para conversar com amigos de forma semelhante as conversas individuais
+  - [ ] aceitar ou recusar convites para grupos
+
+---
+
+## 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+#### **Website**  ([Next.js](https://nextjs.org/)  +  [TypeScript](https://www.typescriptlang.org/))
+
+#### **API**  ([Nestjs](https://nestjs.com/)  +  [MongoDB](https://www.mongodb.com/pt-br))
+
+#### **Utilitários**
+
+-   Protótipo:  **[Figma](https://www.figma.com/)**  →  **[Protótipo (Portifolio)](https://www.figma.com/file/YZwqjkUv4kkD1XAkMTnFPI/WebChat)**
+-   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)**
+-   Ícones:  **[Font Awesome](https://fontawesome.com/)**
+-   Fontes:  **[Amiko](https://fonts.google.com/specimen/Amiko)**
+
+
+---
+
+## 🙋‍♂️ Autor
+
+<a href="https://github.com/fnmatheus">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/100846027?v=4" width="100px;" alt=""/>
+ <br />
+ <p>Matheus Nascimento</p>
+ <br />
+</a>
+
+[![Linkedin Badge](https://img.shields.io/badge/-Matheus-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/fnmatheus/)](https://www.linkedin.com/in/fnmatheus/) 
+[![Gmail Badge](https://img.shields.io/badge/-nasc.matheusfrancisco@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:nasc.matheusfrancisco@gmail.com)](mailto:nasc.matheusfrancisco@gmail.com)
+
+---
+
+## 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
+Feito por Matheus Nascimento 👋🏽 [Entre em contato!](https://www.linkedin.com/in/fnmatheus/)
+
+---

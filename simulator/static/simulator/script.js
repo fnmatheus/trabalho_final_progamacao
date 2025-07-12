@@ -144,6 +144,9 @@ function clearSimulation() {
   const totalConsume = document.getElementById("total-consume");
   totalConsume.removeChild(totalConsume.lastChild);
 
+  const dailyConsume = document.getElementById("daily-consume");
+  dailyConsume.removeChild(dailyConsume.lastChild);
+
   const plotsContainer = document.getElementById("plots-images");
   plotsContainer.innerHTML = "";
 

@@ -308,7 +308,17 @@ body {
     gap: 2vh;
 }
 
+#simulation-info {
+    display: flex;
+}
+
 .simulation-container, .simulation-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.simulation-container section {
     display: flex;
     flex-direction: column;
     gap: 2vh;
@@ -331,7 +341,7 @@ body {
 }
 
 #simulation-section h4 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin: 0;
 }
@@ -382,4 +392,36 @@ body {
 .change-img-btn svg:hover {
     color: var(--primary);
     cursor: pointer;
+}
+
+.consume-table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+#consume-table {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+#consume-table tr {
+    display: flex;
+    gap: 0.2vw;
+    width: max-content;
+}
+
+#consume-table td, #consume-table th {
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    margin: 0;
+    border: 1px solid var(--text-secondary);
+    border-radius: 5px;
+}
+
+#simulation-info {
+    display: flex;
+    gap: 2vw;
 }

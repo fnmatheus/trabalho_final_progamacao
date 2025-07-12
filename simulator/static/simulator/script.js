@@ -15,7 +15,7 @@ function deviceInfoCell(device, type) {
   return tdCell;
 }
 
-// Código responsável por criar uma linha da tabela
+// código responsável por criar uma linha da tabela
 function deviceLineCreator(device) {
   const line = document.createElement("tr");
 
@@ -147,12 +147,15 @@ function clearSimulation() {
   const plotsContainer = document.getElementById("plots-images");
   plotsContainer.innerHTML = "";
 
-  const counterHTML = document.getElementById('image-counter');
+  const counterHTML = document.getElementById("image-counter");
   counterHTML.innerHTML = "1";
+
+  const consumeTable = document.querySelector("#consume-table tbody");
+  consumeTable.innerHTML = "";
 }
 
-// função para adicionar os items da simulação
-function setSimulation(data) {
+// função para adicionar dados da informations
+function setSimulationInfo(data) {
   // adicionar custo total
   const totalCost = document.getElementById("total-cost");
 
@@ -184,7 +187,42 @@ function setSimulation(data) {
   dailyConsumeValue.innerHTML = `${data.total_daily_consume} kWh`;
   
   dailyConsume.appendChild(dailyConsumeValue);
+}
 
+// função que cria cada celula da tabela e criar os elementos dela
+function consumeInfoCell(device, type) {
+  const tdCell = document.createElement("td");
+  tdCell.innerHTML = device[type];
+
+  return tdCell;
+}
+
+// código responsável por criar uma linha da tabela
+function consumeLineCreator(device) {
+  const line = document.createElement("tr");
+
+  const tdName = consumeInfoCell(device, "name");
+  const tdConsume = consumeInfoCell(device, "consume");
+
+  line.append(tdName, tdConsume);
+
+  return line;
+}
+
+// função para adicionar items na tabela de consumo
+function createConsumeTable(devices) {
+  console.log(devices);
+  const tableBody = document.querySelector("#consume-table tbody");
+
+  devices.forEach((device) => {
+    const line = consumeLineCreator(device);
+
+    tableBody.appendChild(line);
+  })
+}
+
+// função para adicionar os graficos da função
+function setSimulationPlots(data) {
   // adicionar imagens dos graficos
   const plotsContainer = document.getElementById("plots-images");
 
@@ -204,8 +242,20 @@ function setSimulation(data) {
   unitxgroupCostPlot.src = `${data.unitxgroup_plot}?t=${Date.now()}`;
 
   plotsContainer.append(dailyCostPlot, periodicCostPlot, unitxgroupCostPlot);
+}
 
-  console.log(data);
+// função para adicionar os items da simulação
+function setSimulation(data) {
+  const { periodic_consume: devices } = data;
+
+  //adiciona as informações da simulação
+  setSimulationInfo(data);
+
+  // cria e adiciona a tabela de consumo na simulação
+  createConsumeTable(devices);
+
+  // adiciona os gráficos da simulação
+  setSimulationPlots(data);
 }
 
 // função principal para enviar os dados da simulação para o backend

@@ -31,13 +31,16 @@ Tabela de conteúdos
 O sistema desenvolvido em Django oferece uma interface web completa para simulação e análise do consumo de energia em um laboratório. As principais funcionalidades incluem:
 
 - 🔧 **Cadastro de Equipamentos**  
-  Permite registrar equipamentos do laboratório com informações como nome, potência média (W), horas de uso diário e custo da energia (R$/kWh).
+  Permite registrar equipamentos do laboratório com informações como nome, potência média (W) e horas de uso diário.
 
 - ✏️ **Edição e Remoção de Equipamentos**  
   Equipamentos cadastrados podem ser editados ou removidos diretamente pela interface.
 
 - 📅 **Definição do Período da Simulação**  
   O usuário pode selecionar a quantidade de dias a serem simulados (mínimo de 1 dia), tornando o sistema flexível para análises semanais, mensais ou personalizadas.
+
+- ⚡ **Definição do Custo da Energia**  
+  O usuário pode selecionar o custo da energia (R$/kWh).
 
 - 🔄 **Simulação do Consumo de Energia por Equipamento**  
   O sistema calcula o consumo total de energia (em kWh) de cada equipamento ao longo de todo o período definido, com base em sua potência e tempo de uso diário.
@@ -122,7 +125,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 #### **Back-end**  ([Django](https://www.djangoproject.com/)  +  [Python](https://www.python.org/))
 
-#### **Front-end**  ([HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML)  +  [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS))
+#### **Front-end**  ([HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML)  +  [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS) + [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript))
 
 #### **Utilitários**
 

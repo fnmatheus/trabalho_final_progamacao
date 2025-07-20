@@ -1,0 +1,220 @@
+<!-- Arquivo HTML resposável pela pagina do projeto -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>ECS</title>
+        <link rel="icon" type="image/svg+xml" href="{% static 'simulator/logo.svg' %}">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=3">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <aside class="sidebar">
+            <img class="sidebar-logo" src="{% static 'simulator/logo.svg' %}" alt="Logo do projeto ECS" width="100">
+            <a class="sidebar-option" href="/">
+                <img class="aside-logo" src="{% static 'simulator/simulator.svg' %}" alt="Logo do simulador" width="100">
+                <span>SIMULADOR</span>
+            </a>
+            <a class="sidebar-option" href="/history">
+                <img class="aside-logo" src="{% static 'simulator/history.svg' %}" alt="Logo do histórico" width="100">
+                <span>HISTÓRICO</span>
+            </a>
+        </aside>
+        <div class="container">
+            <header class="page-header">
+                <!-- Header da página -->
+                <h1>ECS</h1>
+                <h2>Simulador de Consumo Energético</h2>
+            </header>
+            <main>
+                <section class="content">
+                    <!-- Sessão do simulador -->
+                    <h3>Simulador de Gastos</h3>
+                    <div class="options">
+                        <div class="option">
+                            <h4>Custo de energia (R$/kWh)</h4>
+                            <div>
+                                <span>R$</span>
+                                <input id="power-cost" type="number" value="0.70" step="0.01">
+                            </div>
+                        </div>
+                        <div class="option">
+                            <h4>Tempo da simulação (em dias)</h4>
+                            <div>
+                                <input id="days" type="number" value="7">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="device-table">
+                        <h4>Dispositivos</h4>
+                        <table id="devices-table">
+                            <!--
+                                Tabela de dispositivos e suas funções,
+                                como adicionar, remover e simular
+                            -->
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th>Potência Média (W)</th>
+                                    <th>Média de horas de uso</th>
+                                    <th><!-- th do botao deletar --></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--
+                                    O corpo da tebela é adicionado
+                                    de forma dinamica, com JS
+                                -->
+                            </tbody>
+                        </table>
+                        <div class="actions">
+                            <button class="add-button" onclick="changeDisplayStats('block', 'device-form')">Adicionar</button>
+                            <button class="sim-button" onclick="startSimulation()">Simular</button>
+                        </div>
+                    </div>
+                </section>
+                <div id="device-form" style="display: none">
+                    <!-- Formulario para adicionar novo dispositivo -->
+                    <div class="full-screen-bg">
+                        <div class="form-body">
+                            <div class="form-header">
+                                <h3>Adicionar Dispositivo</h3>
+                                <button onclick="changeDisplayStats('none', 'device-form')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <form>
+                                {% csrf_token %}
+                                <div>
+                                    <label for="name">Nome: </label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        required
+                                    >
+                                </div>
+                                <div>
+                                    <label for="amount">Quantidade: </label>
+                                    <input
+                                        type="number"
+                                        name="amount"
+                                        id="amount"
+                                        min="1"
+                                        required
+                                    >
+                                </div>
+                                <div>
+                                    <label for="averagePower">Potência Média (W): </label>
+                                    <input
+                                        type="number"
+                                        name="averagePower"
+                                        id="averagePower"
+                                        min="0"
+                                        required
+                                    >
+                                </div>
+                                <div>
+                                    <label for="usageTime">Média de horas de uso: </label>
+                                    <input
+                                        type="number"
+                                        name="usageTime"
+                                        id="usageTime"
+                                        min="0"
+                                        required
+                                    >
+                                </div>
+                                <div class="btn-container">
+                                    <button class="add-button" type="submit">Adicionar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="simulation-window" style="display: none">
+                    <!-- Janela de resultado da simulação -->
+                    <div class="full-screen-bg">
+                        <div class="simulation-body">
+                            <div id="loading-container" style="display: flex">
+                                <img class="loading-logo" src="{% static 'simulator/loading.svg' %}" alt="Logo do histórico" width="100">
+                            </div>
+                            <section id="simulation-section" style="display: none">
+                                <div id="simulation-info">
+                                    <div class="simulation-container">
+                                        <h3>Resultado da Simulação</h3>
+                                        <section>
+                                            <div>
+                                                <p class="simulation-category" id="total-cost">
+                                                    <span>Gasto total: R$</span>
+                                                </p>
+                                                <p class="simulation-category" id="daily-cost">
+                                                    <span>Gasto diário: R$</span>
+                                                </p>
+                                                <p class="simulation-category" id="total-consume">
+                                                    <span>Consumo total: </span>
+                                                </p>
+                                                <p class="simulation-category" id="daily-consume">
+                                                    <span>Consumo diário: </span>
+                                                </p>
+                                            </div>
+                                            <div class="consume-table-container">
+                                                <h4>Tabela de Consumo</h4>
+                                                <table id="consume-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nome</th>
+                                                            <th>Consumo em kWh</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!--
+                                                            Corpo da tabela é adicionado por JS
+                                                        -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="plots-container">
+                                        <h3>Gráficos</h3>
+                                        <div class="images-container">
+                                            <button class="change-img-btn" onclick="changePlot('-')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                            <div id="plots-images"></div>
+                                            <button class="change-img-btn" onclick="changePlot('+')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <p style="display: flex; font-size: 1.2rem;">
+                                            <span id="image-counter" style="display: flex">1</span>/3
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="simulation-button-container">
+                                    <a class="add-button" href="/simulate?action=download" download="simulacao.json">
+                                        Baixar JSON
+                                    </a>
+                                    <button class="close-button" onclick="closeSimulation()">
+                                        Fechar
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+    <script src="{% static 'simulator/script.js' %}?v=1"></script>
+</html>

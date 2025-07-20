@@ -1,0 +1,438 @@
+:root {
+  --background: #232A31;
+  --surface: #1e1e1e;
+  --primary: #ff9900;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --border-color: #2a2a2a;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: var(--background);
+    color: var(--text-primary);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    gap: 5vw;
+    font-family: "Inter", sans-serif;
+}
+
+.sidebar {
+    display: flex;
+    width: 15vw;
+    height: 100%;
+    flex-direction: column;
+    background-color: var(--primary);
+    gap: 6vh;
+    color: var(--background);
+    align-items: center;
+    padding-top: 5vh;
+}
+
+.sidebar-logo {
+    width: 60%;
+}
+
+.sidebar-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    text-decoration: none;
+    color: var(--background);
+    gap: 1vh;
+}
+
+.sidebar-option img {
+    width: 80%;
+}
+
+.sidebar-option span {
+    font-size: small;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    margin-top: 5vh;
+}
+
+.page-header h1 {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.page-header h2 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 200;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.content h3 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.options {
+    display: flex;
+    gap: 2vh;
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    gap: 2vh;
+}
+
+.option h4 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.option div {
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+    border: solid 1px var(--text-secondary);
+    border-radius: 5px;
+    width: max-content;
+    padding: 5px;
+    font-size: large;
+}
+
+.option div input {
+    border: none;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: large;
+}
+
+.device-table {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.device-table h4 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.device-table table thead tr {
+    font-size: large;
+}
+
+.device-table table tbody tr input {
+    background-color: var(--background);
+    border: none;
+    font-size: large;
+    border: solid 1px var(--text-secondary);
+    border-radius: 5px;
+    color: var(--text-primary);
+    padding: 5px;
+}
+
+.device-table table tbody tr button {
+    background-color: var(--background);
+    border: none;
+}
+
+.device-table table tbody tr button svg {
+    color: var(--text-secondary);
+    width: auto;
+    height: 30px;
+}
+
+.device-table table tbody tr button svg:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5vw;
+}
+
+.sim-button, .add-button, .close-button {
+    border: solid 1px var(--text-primary);
+    border-radius: 5px;
+    background-color: var(--background);
+    font-size: large;
+    color: var(--text-primary);
+    padding: 5px;
+    width: 8vw;
+    text-align: center;
+    text-decoration: none;
+}
+
+.sim-button:hover {
+    border-color: var(--primary);
+    color: var(--text-primary);
+    background-color: var(--primary);
+    cursor: pointer;
+}
+
+.close-button:hover {
+    border-color: red;
+    color: var(--text-primary);
+    background-color: red;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    border-color: green;
+    color: var(--text-primary);
+    background-color: green;
+    cursor: pointer;
+}
+
+.full-screen-bg {
+    position: absolute;
+    inset-inline-start: 0px;
+    inset-block-start: 0px;
+    width: 100vw;
+    height: 100%;
+    background: rgb(0 0 0 / 60%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-header h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.form-header button {
+    background-color: var(--background);
+    border: none;
+    padding: 0;
+}
+
+.form-header button svg {
+    color: var(--text-primary);
+    width: auto;
+    height: 30px;
+}
+
+.form-header button svg:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.form-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.form-body form div {
+    display: flex;
+    gap: 2vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-body form div input {
+    background-color: var(--background);
+    border: none;
+    font-size: large;
+    border: solid 1px var(--text-secondary);
+    border-radius: 5px;
+    color: var(--text-primary);
+    padding: 5px;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+
+.simulation-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    height: auto;
+    background-color: var(--background);
+    border-radius: 20px;
+    padding: 20px;
+     gap: 2vh;
+}
+
+.loading-container {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#loading-logo {
+    width: 30%;
+    height: auto;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#simulation-section {
+    flex-direction: column;
+    gap: 2vh;
+}
+
+#simulation-info {
+    display: flex;
+}
+
+.simulation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.simulation-container section {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.simulation-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 2vw;
+}
+
+#simulation-section h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+#simulation-section p {
+    margin: 0;
+}
+
+#simulation-section h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.simulation-category {
+    font-size: 1.2rem;
+}
+
+.plots-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: center;
+}
+
+.images-container {
+    display: flex;
+    align-items: center;
+}
+
+#plots-images {
+    display: flex;
+    width: 45vw;
+    height: 50vh;
+    flex-wrap: wrap;
+    gap: 1vw;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#plots-images img {
+    width: auto;
+    height: 50vh;
+}
+
+.change-img-btn {
+    border: none;
+    margin: 0;
+    background-color: var(--background);
+    height: max-content;
+}
+
+.change-img-btn svg {
+    width: 50px;
+    color: var(--text-secondary);
+}
+
+.change-img-btn svg:hover {
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.consume-table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+#consume-table {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+#consume-table tr {
+    display: flex;
+    gap: 0.2vw;
+    width: max-content;
+}
+
+#consume-table td, #consume-table th {
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    margin: 0;
+    border: 1px solid var(--text-secondary);
+    border-radius: 5px;
+}
+
+#simulation-info {
+    display: flex;
+    gap: 2vw;
+}

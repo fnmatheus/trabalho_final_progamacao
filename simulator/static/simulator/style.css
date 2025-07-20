@@ -167,20 +167,29 @@ body {
     gap: 0.5vw;
 }
 
-.sim-button, .add-button {
+.sim-button, .add-button, .close-button {
     border: solid 1px var(--text-primary);
     border-radius: 5px;
     background-color: var(--background);
     font-size: large;
     color: var(--text-primary);
     padding: 5px;
-    width: 6vw;
+    width: 8vw;
+    text-align: center;
+    text-decoration: none;
 }
 
 .sim-button:hover {
     border-color: var(--primary);
     color: var(--text-primary);
     background-color: var(--primary);
+    cursor: pointer;
+}
+
+.close-button:hover {
+    border-color: red;
+    color: var(--text-primary);
+    background-color: red;
     cursor: pointer;
 }
 
@@ -312,7 +321,7 @@ body {
     display: flex;
 }
 
-.simulation-container, .simulation-button-container {
+.simulation-container {
     display: flex;
     flex-direction: column;
     gap: 2vh;
@@ -325,8 +334,10 @@ body {
 }
 
 .simulation-button-container {
-    align-items: center;
+    display: flex;
+    justify-content: center;
     width: 100%;
+    gap: 2vw;
 }
 
 #simulation-section h3 {

@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>ECS</title>
         <link rel="icon" type="image/svg+xml" href="{% static 'simulator/logo.svg' %}">
-        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=2">
+        <link rel="stylesheet" href="{% static 'simulator/style.css' %}?v=3">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -202,7 +202,10 @@
                                     </div>
                                 </div>
                                 <div class="simulation-button-container">
-                                    <button class="sim-button" onclick="closeSimulation()">
+                                    <a class="add-button" href="/simulate?action=download" download="simulacao.json">
+                                        Baixar JSON
+                                    </a>
+                                    <button class="close-button" onclick="closeSimulation()">
                                         Fechar
                                     </button>
                                 </div>
@@ -213,5 +216,5 @@
             </main>
         </div>
     </body>
-    <script src="{% static 'simulator/script.js' %}?v=2"></script>
+    <script src="{% static 'simulator/script.js' %}?v=1"></script>
 </html>

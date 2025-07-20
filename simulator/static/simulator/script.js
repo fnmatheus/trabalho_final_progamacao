@@ -232,17 +232,17 @@ function setSimulationPlots(data) {
   const dailyCostPlot = document.createElement("img");
   dailyCostPlot.id = "plot-1";
   dailyCostPlot.style = "display: block";
-  dailyCostPlot.src = `${data.daily_cost_plot}?t=${Date.now()}`;
+  dailyCostPlot.src = `data:image/png;base64,${data.daily_cost_plot}`;
 
   const periodicCostPlot = document.createElement("img");
   periodicCostPlot.id = "plot-2";
   periodicCostPlot.style = "display: none";
-  periodicCostPlot.src = `${data.periodic_plot}?t=${Date.now()}`;
+  periodicCostPlot.src = `data:image/png;base64,${data.periodic_plot}`;
 
   const unitxgroupCostPlot = document.createElement("img");
   unitxgroupCostPlot.id = "plot-3";
   unitxgroupCostPlot.style = "display: none";
-  unitxgroupCostPlot.src = `${data.unitxgroup_plot}?t=${Date.now()}`;
+  unitxgroupCostPlot.src = `data:image/png;base64,${data.unitxgroup_plot}`;
 
   plotsContainer.append(dailyCostPlot, periodicCostPlot, unitxgroupCostPlot);
 }

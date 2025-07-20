@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, JsonResponse, HttpResponse
+from .models import SimulationResult
 import matplotlib.pyplot as plt
 import numpy as np
 import json
+import io
+import base64
 
 
 # Função para renderizar o HTML da home
@@ -15,7 +18,9 @@ def get_unit_devices_daily_consume(devices):
     unit_daily_consume = [
         {
             "name": device["name"],
-            "consume": round(((device["averagePower"]/1000) * device["usageTime"]), 2),
+            "consume": round(
+                ((device["averagePower"]/1000) * device["usageTime"]), 2
+            ),
             "amount": device["amount"],
         }
         for device in devices
@@ -37,7 +42,9 @@ def get_devices_daily_consume(devices_unit_daily_consume):
 
 # Função para calcular o consumo diario dos dispositivos
 def get_daily_total_consume(devices_daily_consume):
-    total_consume = round(sum(device["consume"] for device in devices_daily_consume), 2)
+    total_consume = round(
+        sum(device["consume"] for device in devices_daily_consume), 2
+    )
     return total_consume
 
 
@@ -105,10 +112,6 @@ def get_total_cost(devices):
     return total_cost
 
 
-# Caminho no qual os graficos devem ser salvos
-path = "media/uploads/"
-
-
 # Função para gerar o gráfico de visão geral dos gastos
 def plot_daily_cost_value(daily_cost, total_daily_cost, days, name):
     days_range = list(range(0, days + 1))
@@ -138,10 +141,15 @@ def plot_daily_cost_value(daily_cost, total_daily_cost, days, name):
     plt.title("Custo diário")
     plt.legend()
 
-    plt.savefig(f"{path}{name}.svg", dpi=300, bbox_inches='tight')
+    buffer = io.BytesIO()
+    plt.savefig(buffer, dpi=300, bbox_inches='tight', format="png")
+    buffer.seek(0)
+
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+
     plt.close()
 
-    return {"path": f"{path}{name}.svg"}
+    return {"image": image_base64}
 
 
 # Função responsável em gerar o gráfico de barra única
@@ -157,10 +165,15 @@ def plot_simple_bar(devices, name, days):
     plt.ylabel("Gasto Enegético em R$")
     plt.title(f"Consumo em {days} dias por dispositivo")
 
-    plt.savefig(f"{path}{name}.svg", dpi=300, bbox_inches='tight')
+    buffer = io.BytesIO()
+    plt.savefig(buffer, dpi=300, bbox_inches='tight', format="png")
+    buffer.seek(0)
+
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+
     plt.close()
 
-    return {"path": f"{path}{name}.svg"}
+    return {"image": image_base64}
 
 
 # Função responsável em gerar o gráfico de barra duplas para comparação
@@ -197,10 +210,69 @@ def plot_double_bar(units, groups, name):
     plt.title("Consumo de Unidade x Grupo de Dispositivos")
     plt.legend()
 
-    plt.savefig(f"{path}{name}.svg", dpi=300, bbox_inches='tight')
+    buffer = io.BytesIO()
+    plt.savefig(buffer, dpi=300, bbox_inches='tight', format="png")
+    buffer.seek(0)
+
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+
     plt.close()
 
-    return {"path": f"{path}{name}.svg"}
+    return {"image": image_base64}
+
+
+def create_new_simulation(request: HttpRequest):
+    body = json.loads(request.body)
+    power_cost = float(body.get("powerCost", []))
+    days = int(body.get("days", []))
+    devices = body.get("devices", [])
+
+    unit_daily_consume = get_unit_devices_daily_consume(devices)
+    daily_consume = get_devices_daily_consume(unit_daily_consume)
+    total_daily_consume = get_daily_total_consume(daily_consume)
+    periodic_consume = get_devices_periodic_consume(daily_consume, days)
+    total_consume = get_total_consume(periodic_consume)
+
+    unit_daily_cost = get_unit_devices_daily_cost(
+        unit_daily_consume,
+        power_cost
+    )
+    daily_cost = get_devices_daily_cost(unit_daily_cost)
+    total_daily_cost = get_total_cost(daily_cost)
+    periodic_cost = get_devices_periodic_cost(daily_cost, days)
+    total_periodic_cost = get_total_cost(periodic_cost)
+
+    daily_cost_plot = plot_daily_cost_value(
+        daily_cost,
+        total_daily_cost,
+        days,
+        "daily_cost_plot"
+    )
+
+    periodic_plot = plot_simple_bar(
+        periodic_cost,
+        "periodic_cost_plot",
+        days,
+    )
+
+    unitxgroup_plot = plot_double_bar(
+        unit_daily_cost,
+        daily_cost,
+        "unitxgroup_plot",
+    )
+
+    data = {
+        "daily_cost": total_daily_cost,
+        "periodic_cost": total_periodic_cost,
+        "total_daily_consume": total_daily_consume,
+        "periodic_consume": periodic_consume,
+        "total_consume": total_consume,
+        "daily_cost_plot": daily_cost_plot["image"],
+        "periodic_plot": periodic_plot["image"],
+        "unitxgroup_plot": unitxgroup_plot["image"],
+    }
+
+    return data
 
 
 # Função principal da simulação de gastos
@@ -208,52 +280,28 @@ def plot_double_bar(units, groups, name):
 # Dá o retorno para o frontend
 def simulate(request: HttpRequest):
     if request.method == "POST":
-        body = json.loads(request.body)
-        power_cost = float(body.get("powerCost", []))
-        days = int(body.get("days", []))
-        devices = body.get("devices", [])
+        data = create_new_simulation(request)
 
-        unit_daily_consume = get_unit_devices_daily_consume(devices)
-        daily_consume = get_devices_daily_consume(unit_daily_consume)
-        total_daily_consume = get_daily_total_consume(daily_consume)
-        periodic_consume = get_devices_periodic_consume(daily_consume, days)
-        total_consume = get_total_consume(periodic_consume)
-
-        unit_daily_cost = get_unit_devices_daily_cost(unit_daily_consume, power_cost)
-        daily_cost = get_devices_daily_cost(unit_daily_cost)
-        total_daily_cost = get_total_cost(daily_cost)
-        periodic_cost = get_devices_periodic_cost(daily_cost, days)
-        total_periodic_cost = get_total_cost(periodic_cost)
-
-        daily_cost_plot = plot_daily_cost_value(
-            daily_cost,
-            total_daily_cost,
-            days,
-            "daily_cost_plot"
-        )
-
-        periodic_plot = plot_simple_bar(
-            periodic_cost,
-            "periodic_cost_plot",
-            days,
-        )
-
-        unitxgroup_plot = plot_double_bar(
-            unit_daily_cost,
-            daily_cost,
-            "unitxgroup_plot",
-        )
-
-        data = {
-            "daily_cost": total_daily_cost,
-            "periodic_cost": total_periodic_cost,
-            "total_daily_consume": total_daily_consume,
-            "periodic_consume": periodic_consume,
-            "total_consume": total_consume,
-            "daily_cost_plot": daily_cost_plot["path"],
-            "periodic_plot": periodic_plot["path"],
-            "unitxgroup_plot": unitxgroup_plot["path"],
-        }
+        SimulationResult.objects.create(**data)
 
         return JsonResponse({"status": "OK", "data": data})
+    elif request.method == "GET" and request.GET.get("action") == "download":
+        latest_simulation = SimulationResult.objects.last()
+
+        if not latest_simulation:
+            return JsonResponse(
+                {"error": "Nenhuma simulação encontrada"}, status=404
+            )
+
+        from django.forms.models import model_to_dict
+        data_dict = model_to_dict(latest_simulation)
+
+        data_dict.pop('id', None)
+
+        json_data = json.dumps(data_dict, indent=4)
+
+        response = HttpResponse(json_data, content_type='application/json')
+        response['Content-Disposition'] = 'attachment; filename="simulacao.json"'
+
+        return response
     return JsonResponse({"error": "Bad request"}, status=405)
